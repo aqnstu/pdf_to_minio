@@ -1,0 +1,145 @@
+2021-03-30 21:01:35.339 | ERROR    | __main__:main:90 - pk: 19477
+Traceback (most recent call last):
+
+  File "C:\Users\blinov.2016\Miniconda3\lib\site-packages\pdf2image\pdf2image.py", line 462, in pdfinfo_from_path
+    raise ValueError
+
+ValueError
+
+
+During handling of the above exception, another exception occurred:
+
+
+Traceback (most recent call last):
+
+  File "c:/Users/blinov.2016/Desktop/pdf_to_minio/pdf_to_minio.py", line 119, in <module>
+    main()
+    -> <function main at 0x000001B523487CA0>
+
+> File "c:/Users/blinov.2016/Desktop/pdf_to_minio/pdf_to_minio.py", line 83, in main
+    images = convert_from_bytes(
+             -> <function convert_from_bytes at 0x000001B522BB18B0>
+
+  File "C:\Users\blinov.2016\Miniconda3\lib\site-packages\pdf2image\pdf2image.py", line 270, in convert_from_bytes
+    return convert_from_path(
+           -> <function convert_from_path at 0x000001B522AB8C10>
+
+  File "C:\Users\blinov.2016\Miniconda3\lib\site-packages\pdf2image\pdf2image.py", line 97, in convert_from_path
+    page_count = pdfinfo_from_path(pdf_path, userpw, poppler_path=poppler_path)["Pages"]
+                 |                 |         |                    -> None
+                 |                 |         -> None
+                 |                 -> 'C:\\Users\\BLINOV~1.201\\AppData\\Local\\Temp\\tmpa08w60sj'
+                 -> <function pdfinfo_from_path at 0x000001B522BB1C10>
+
+  File "C:\Users\blinov.2016\Miniconda3\lib\site-packages\pdf2image\pdf2image.py", line 471, in pdfinfo_from_path
+    raise PDFPageCountError(
+          -> <class 'pdf2image.exceptions.PDFPageCountError'>
+
+pdf2image.exceptions.PDFPageCountError: Unable to get page count.
+Syntax Warning: May not be a PDF file (continuing anyway)
+Syntax Error (19): Illegal character '>'
+Syntax Error: Couldn't find trailer dictionary
+Syntax Error: Couldn't find trailer dictionary
+Syntax Error: Couldn't read xref table
+
+2021-03-30 21:29:38.861 | ERROR    | __main__:main:90 - pk: 12764
+Traceback (most recent call last):
+
+  File "c:/Users/blinov.2016/Desktop/pdf_to_minio/pdf_to_minio.py", line 119, in <module>
+    main()
+    -> <function main at 0x000001B523487CA0>
+
+> File "c:/Users/blinov.2016/Desktop/pdf_to_minio/pdf_to_minio.py", line 83, in main
+    images = convert_from_bytes(
+             -> <function convert_from_bytes at 0x000001B522BB18B0>
+
+  File "C:\Users\blinov.2016\Miniconda3\lib\site-packages\pdf2image\pdf2image.py", line 270, in convert_from_bytes
+    return convert_from_path(
+           -> <function convert_from_path at 0x000001B522AB8C10>
+
+  File "C:\Users\blinov.2016\Miniconda3\lib\site-packages\pdf2image\pdf2image.py", line 210, in convert_from_path
+    images += parse_buffer_func(data)
+    |         |                 -> b'\xff\xd8\xff\xe0\x00\x10JFIF\x00\x01\x01\x01\x00\xc8\x00\xc8\x00\x00\xff\xdb\x00C\x00\x08\x06\x06\x07\x06\x05\x08\x07\x07\x...
+    |         -> <function parse_buffer_to_jpeg at 0x000001B522BB1790>
+    -> []
+
+  File "C:\Users\blinov.2016\Miniconda3\lib\site-packages\pdf2image\parsers.py", line 47, in parse_buffer_to_jpeg
+    return [
+
+  File "C:\Users\blinov.2016\Miniconda3\lib\site-packages\pdf2image\parsers.py", line 48, in <listcomp>
+    Image.open(BytesIO(image_data + b"\xff\xd9"))
+    |     |    |       -> b'\xff\xd8\xff\xe0\x00\x10JFIF\x00\x01\x01\x01\x00\xc8\x00\xc8\x00\x00\xff\xdb\x00C\x00\x08\x06\x06\x07\x06\x05\x08\x07\x07\x...
+    |     |    -> <class '_io.BytesIO'>
+    |     -> <function open at 0x000001B522BA30D0>
+    -> <module 'PIL.Image' from 'C:\\Users\\blinov.2016\\Miniconda3\\lib\\site-packages\\PIL\\Image.py'>
+
+  File "C:\Users\blinov.2016\Miniconda3\lib\site-packages\PIL\Image.py", line 2929, in open
+    im = _open_core(fp, filename, prefix, formats)
+         |          |   |         |       -> ['BMP', 'DIB', 'GIF', 'TIFF', 'JPEG', 'PPM', 'PNG']
+         |          |   |         -> b'\xff\xd8\xff\xe0\x00\x10JFIF\x00\x01\x01\x01\x00\xc8'
+         |          |   -> ''
+         |          -> <_io.BytesIO object at 0x000001B500EEAB30>
+         -> <function open.<locals>._open_core at 0x000001B52EA903A0>
+
+  File "C:\Users\blinov.2016\Miniconda3\lib\site-packages\PIL\Image.py", line 2916, in _open_core
+    _decompression_bomb_check(im.size)
+    |                         |  -> <property object at 0x000001B522B1D5E0>
+    |                         -> <PIL.JpegImagePlugin.JpegImageFile image mode=RGB size=14167x19489 at 0x1B534A5C4F0>
+    -> <function _decompression_bomb_check at 0x000001B522BA3040>
+
+  File "C:\Users\blinov.2016\Miniconda3\lib\site-packages\PIL\Image.py", line 2828, in _decompression_bomb_check
+    raise DecompressionBombError(
+          -> <class 'PIL.Image.DecompressionBombError'>
+
+PIL.Image.DecompressionBombError: Image size (276100663 pixels) exceeds limit of 178956970 pixels, could be decompression bomb DOS attack.
+2021-03-30 21:29:56.188 | ERROR    | __main__:main:90 - pk: 12765
+Traceback (most recent call last):
+
+  File "c:/Users/blinov.2016/Desktop/pdf_to_minio/pdf_to_minio.py", line 119, in <module>
+    main()
+    -> <function main at 0x000001B523487CA0>
+
+> File "c:/Users/blinov.2016/Desktop/pdf_to_minio/pdf_to_minio.py", line 83, in main
+    images = convert_from_bytes(
+             -> <function convert_from_bytes at 0x000001B522BB18B0>
+
+  File "C:\Users\blinov.2016\Miniconda3\lib\site-packages\pdf2image\pdf2image.py", line 270, in convert_from_bytes
+    return convert_from_path(
+           -> <function convert_from_path at 0x000001B522AB8C10>
+
+  File "C:\Users\blinov.2016\Miniconda3\lib\site-packages\pdf2image\pdf2image.py", line 210, in convert_from_path
+    images += parse_buffer_func(data)
+    |         |                 -> b'\xff\xd8\xff\xe0\x00\x10JFIF\x00\x01\x01\x01\x00\xc8\x00\xc8\x00\x00\xff\xdb\x00C\x00\x08\x06\x06\x07\x06\x05\x08\x07\x07\x...
+    |         -> <function parse_buffer_to_jpeg at 0x000001B522BB1790>
+    -> []
+
+  File "C:\Users\blinov.2016\Miniconda3\lib\site-packages\pdf2image\parsers.py", line 47, in parse_buffer_to_jpeg
+    return [
+
+  File "C:\Users\blinov.2016\Miniconda3\lib\site-packages\pdf2image\parsers.py", line 48, in <listcomp>
+    Image.open(BytesIO(image_data + b"\xff\xd9"))
+    |     |    |       -> b'\xff\xd8\xff\xe0\x00\x10JFIF\x00\x01\x01\x01\x00\xc8\x00\xc8\x00\x00\xff\xdb\x00C\x00\x08\x06\x06\x07\x06\x05\x08\x07\x07\x...
+    |     |    -> <class '_io.BytesIO'>
+    |     -> <function open at 0x000001B522BA30D0>
+    -> <module 'PIL.Image' from 'C:\\Users\\blinov.2016\\Miniconda3\\lib\\site-packages\\PIL\\Image.py'>
+
+  File "C:\Users\blinov.2016\Miniconda3\lib\site-packages\PIL\Image.py", line 2929, in open
+    im = _open_core(fp, filename, prefix, formats)
+         |          |   |         |       -> ['BMP', 'DIB', 'GIF', 'TIFF', 'JPEG', 'PPM', 'PNG']
+         |          |   |         -> b'\xff\xd8\xff\xe0\x00\x10JFIF\x00\x01\x01\x01\x00\xc8'
+         |          |   -> ''
+         |          -> <_io.BytesIO object at 0x000001B500EEAB30>
+         -> <function open.<locals>._open_core at 0x000001B52EA903A0>
+
+  File "C:\Users\blinov.2016\Miniconda3\lib\site-packages\PIL\Image.py", line 2916, in _open_core
+    _decompression_bomb_check(im.size)
+    |                         |  -> <property object at 0x000001B522B1D5E0>
+    |                         -> <PIL.JpegImagePlugin.JpegImageFile image mode=RGB size=14167x19489 at 0x1B534A5C3D0>
+    -> <function _decompression_bomb_check at 0x000001B522BA3040>
+
+  File "C:\Users\blinov.2016\Miniconda3\lib\site-packages\PIL\Image.py", line 2828, in _decompression_bomb_check
+    raise DecompressionBombError(
+          -> <class 'PIL.Image.DecompressionBombError'>
+
+PIL.Image.DecompressionBombError: Image size (276100663 pixels) exceeds limit of 178956970 pixels, could be decompression bomb DOS attack.
+2021-03-30 23:39:20.605 | DEBUG    | __main__:<module>:122 - Time: 1617122360.6057923
