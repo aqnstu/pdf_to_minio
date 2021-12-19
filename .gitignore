@@ -1,6 +1,7 @@
+/__pycache__
 /config.py
 /m2.c
 /m2.pyx
+/pdf_to_minio.log
 /pdf2image_.py
 /setup.py
-/__pycache__
