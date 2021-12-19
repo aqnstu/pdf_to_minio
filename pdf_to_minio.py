@@ -1,15 +1,15 @@
 # coding: utf-8
-from config import *
+from config import DB, DRIVER, USERNAME, PASSWORD, HOST, PORT, DB_NAME, \
+    MINIO_URL, MINIO_ACCESS_KEY, MINIO_SECRET_KEY
 from loguru import logger
 from minio import Minio
 from pdf2image import convert_from_bytes
 from pyminio import Pyminio
-from sqlalchemy import Column, DateTime, LargeBinary, VARCHAR, text, create_engine, Table, MetaData
+from sqlalchemy import Column, DateTime, LargeBinary, VARCHAR, text, create_engine, Table
 from sqlalchemy.dialects.oracle import NUMBER
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm.session import sessionmaker
 import io
-import itertools
 import timeit
 
 logger.add('pdf_to_minio.log', backtrace=True, diagnose=True, level='DEBUG')
@@ -21,7 +21,7 @@ engine_oracle = create_engine(
 
 try:
     engine_oracle.connect()
-except:
+except Exception:
     logger.exception("Database access problem!")
 
 factory = sessionmaker(
@@ -80,19 +80,24 @@ def main():
         ).join(
             t_prl_ohop_pdf, PdfDoc.pk == t_prl_ohop_pdf.c.pk
         ).all()
-    except:
-        logger.exception(f"Something wrong with query to DB!")
+    except Exception:
+        logger.exception("Something wrong with query to DB!")
 
+    logger.info('Starting...')
     for pdf in pdfs:
         try:
             images = convert_from_bytes(
                 pdf.body,
                 dpi=200,
                 fmt='jpeg',
-                jpegopt={'quality': 85, 'optimize': True,
-                         'progressive': False},
+                jpegopt={
+                    'quality': 85,
+                    'optimize': True,
+                    'progressive': False
+                },
             )
-        except:
+            logger.info(f'Done: {int(pdf.pk)}')
+        except Exception:
             logger.exception(f"PK: {int(pdf.pk)}")
             continue
         pyminio_client.mkdirs(f'/pdf/{int(pdf.pk)}/')
